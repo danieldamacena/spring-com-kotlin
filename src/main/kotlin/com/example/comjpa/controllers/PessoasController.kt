@@ -5,6 +5,8 @@ import com.example.comjpa.models.Pessoas
 import com.example.comjpa.repository.PessoasRepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 
@@ -14,6 +16,6 @@ class PessoasController(private val repo: PessoasRepo) {
     @GetMapping("/pessoas")
     fun lista(): List<Pessoas> = repo.findAll()
 
-    fun cria(pessoa: Pessoas): Pessoas = repo.save(pessoa)
-
+    @PostMapping("/post")
+    fun cria(@RequestBody pessoa: Pessoas): Pessoas = repo.save(pessoa)
 }
