@@ -4,7 +4,6 @@ package com.example.comjpa.controllers
 import com.example.comjpa.models.Pessoas
 import com.example.comjpa.service.PessoasService
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 
 @RestController
@@ -18,6 +17,10 @@ class PessoasController(private val service: PessoasService) {
 
     @PostMapping("/post")
     fun criaPessoa(@RequestBody pessoa: Pessoas): Pessoas = service.criaPessoa(pessoa)
+
+    @PutMapping("/put/{pessoaId}")
+    fun atualizaById(@PathVariable("pessoaId") pessoaId: Int, @RequestBody pessoa: Pessoas): Pessoas =
+        service.updateById(pessoaId, pessoa)
 
     @DeleteMapping("/delete/{pessoaId}")
     fun deletaPessoa(@PathVariable("pessoaId") pessoaId: Int) = service.deletaPessoa(pessoaId)
